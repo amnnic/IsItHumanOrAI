@@ -1,0 +1,9 @@
+# Python 3.11. Install torch dulu: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+transformers<5
+datasets<5
+scikit-learn
+matplotlib
+pandas
+tqdm
+pillow
+requests
