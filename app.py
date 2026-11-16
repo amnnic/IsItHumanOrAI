@@ -141,7 +141,7 @@ def models_for(ds, img_bytes, txt):
 
 def analyze(img_bytes, txt, dss):
     res = {"mode": "both" if (img_bytes and txt) else ("image" if img_bytes else "text"), "ds": {}}
-    for ds in dss:  # satu dataset selesai dulu, supaya memori GPU hanya dipakai satu dataset
+    for ds in dss:
         ms = models_for(ds, img_bytes, txt)
         if res["mode"] == "both":
             r = {m: inf.predict_all(txt, img_bytes, m, ds) for m in ms}
@@ -276,7 +276,7 @@ def render_ds(ds, mode, block, text, img_bytes):
                 pred_card(f"Prediksi {ARCH[m]}", pred[m])
         body = (evaluasi(ds, ms, "img", "Arsitektur", ARCH, "kedua arsitektur")
                 + agreement(pred))
-    else:  # 6 cards: (gambar, teks, gabungan) x (ResNet50-BERT, ViT-BERT)
+    else:
         order = sorted(ms, key=lambda m: m != "ResNet50-BERT")
         left, right = st.columns([1, 2.2])
         with left:
@@ -350,7 +350,7 @@ def page_compare():
             f'<div class="card"><div class="card-label">Perbandingan — {DS_LABEL[ds]}</div>'
             f'<div class="model-grid">{boxes}</div>{table}</div>', unsafe_allow_html=True)
     dss = st.session_state.dss
-    if len(dss) == 2:  # ringkasan lintas dataset
+    if len(dss) == 2:
         rows = []
         for m in MODELS:
             row = [m]

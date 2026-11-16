@@ -1,9 +1,3 @@
-"""Satu kali jalan: siapkan data -> fine-tune ResNet50 -> fine-tune ViT -> evaluasi.
-
-Jalankan dari folder skripsi-nicole-v7:  python run_all.py
-Langkah yang hasilnya sudah ada otomatis dilewati, jadi kalau terputus cukup jalankan lagi.
-Paksa ulang semua langkah: python run_all.py --force
-"""
 import os
 import subprocess
 import sys

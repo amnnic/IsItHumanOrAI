@@ -25,7 +25,6 @@ CKPT_FILE = {
     ("custom", "vit"): "vit_bert_custom_e3.pt",
     ("custom", "resnet"): "resnet_bert_custom_e3.pt",
 }
-# Cari di ckpt/ folder ini dulu; kalau tidak ada, cari di folder v1 / v7 yang bersebelahan.
 SIBLING = {"mirage": "skripsi-nicole-v1", "custom": "skripsi-nicole-v7"}
 
 
@@ -45,7 +44,7 @@ def _store() -> dict:
 
 def load_model(kind: str, ds: str):
     store = _store()
-    for key in [k for k in store if k[0] != ds]:  # GPU 4 GB: simpan model satu dataset saja
+    for key in [k for k in store if k[0] != ds]:
         del store[key]
         gc.collect()
         if torch.cuda.is_available():
@@ -101,13 +100,10 @@ def _load(name):
 
 
 def _agg(sets, mode):
-    """sets: dict nama-set -> hasil. Kembalikan (acc, f1) rata-rata mode tsb."""
     return (sum(s[mode]["acc"] for s in sets) / len(sets), sum(s[mode]["f1"] for s in sets) / len(sets))
 
 
 def load_metrics():
-    """Metrik per dataset latih -> model -> mode:
-       m_* = MiRAGeNews OOD (rata-rata test2-test5), f_* = Fakeddit test, c_* = test dataset sendiri."""
     cmp_, v7 = _load("compare_results.json"), _load("results_v7.json")
     out = {}
     for ds in DATASETS:

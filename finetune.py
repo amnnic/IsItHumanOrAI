@@ -1,14 +1,3 @@
-"""Fine-tuning model MiRAGeNews + Fakeddit (hasil training sebelumnya) dengan dataset buatan sendiri.
-
-Ide: mulai dari checkpoint yang sudah jadi, lanjut latih sebentar dengan
-  - data buatan sendiri (bagian latih, diulang --repeat kali), dan
-  - sebagian kecil data lama (replay: --replay per dataset) supaya model tidak lupa MiRAGeNews dan Fakeddit.
-LR dikecilkan (--lr-scale) dan hanya --epochs epoch. Checkpoint yang disimpan = epoch TERAKHIR (tidak dipilih dari data uji).
-
-Jalankan dari folder skripsi-nicole-v7 (folder v6 harus sejajar):
-  python finetune.py --backbone resnet
-  python finetune.py --backbone vit
-"""
 import argparse
 import json
 import math

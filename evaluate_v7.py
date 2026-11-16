@@ -1,14 +1,3 @@
-"""Evaluasi: apakah menambah dataset buatan sendiri membantu?
-
-Membandingkan, pada data uji buatan sendiri (bagian uji, tidak dipakai latih):
-  - model awal (MiRAGeNews + Fakeddit, sebelum ditambah)
-  - model setelah ditambah dataset buatan sendiri (hasil finetune.py)
-  - 6 model lama (MiRAGeNews saja, Defactify saja, MiRAGeNews + Defactify) sebagai pembanding
-Juga mengecek apakah model baru "lupa": akurasi di MiRAGeNews OOD (test2-5) dan Fakeddit test.
-
-Jalankan dari folder skripsi-nicole-v7:  python evaluate_v7.py
-Hasil: results_v7.json, preds_v7.npz, report_v7/summary.csv
-"""
 import argparse
 import csv
 import json
@@ -60,7 +49,7 @@ def run(root, bs, workers):
             R[key] = {}
             todo = dict(sets)
             if sc == "v7":
-                todo.pop("custom/semua")  # model ini sudah melihat bagian latih
+                todo.pop("custom/semua")
             if with_extra:
                 todo.update(extra)
             for sname, loader in todo.items():

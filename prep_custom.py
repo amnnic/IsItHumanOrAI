@@ -1,16 +1,3 @@
-"""Menyiapkan dataset buatan sendiri (foto berita asli + gambar buatan AI) untuk fine-tuning.
-
-Isi zip (sesuai hasil pengecekan gambar):
-  dataset_generatesendiri_AI.zip   -> foto berita ASLI   (HTML: datasetgenerateai.html)
-  dataset_generatesendiri_Asli.zip -> gambar BUATAN AI   (HTML: dataset_AI.html)
-Nama zip tertukar dengan isinya, jadi di sini dipetakan eksplisit lewat --real-zip dan --ai-zip.
-
-Hasil: data/custom/{train,test,all}.csv + data/custom/images/*.jpg
-Pembagian latih/uji memakai GRUP: gambar asli dan gambar AI dari berita yang sama selalu masuk split yang sama,
-supaya tidak ada kebocoran (judul sama, label berlawanan).
-
-Jalankan: python prep_custom.py
-"""
 import argparse
 import csv
 import html
